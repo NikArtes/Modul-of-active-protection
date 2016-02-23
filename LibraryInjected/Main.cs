@@ -13,13 +13,12 @@ namespace LibraryInjected
     public class Main : IEntryPoint
     {
         private Stack<string> Queue = new Stack<string>();
-        private FileMonInterface Interface;
+        private IFileMon Interface;
         private LocalHook CreateFileHook;
 
         public Main(RemoteHooking.IContext InContext, string InChannelName)
         {
-            this.Interface = RemoteHooking.IpcConnectClient<FileMonInterface>(InChannelName);
-            this.Interface.Ping();
+            this.Interface = RemoteHooking.IpcConnectClient<FileMonForNLog>(InChannelName);
         }
         //TODO подумать как распаралелить 
         public void Run(RemoteHooking.IContext InContext, string InChannelName)
@@ -51,8 +50,6 @@ namespace LibraryInjected
                         }
                         this.Interface.OnCreateFile(RemoteHooking.GetCurrentProcessId(), InFileNames);
                     }
-                    else
-                        this.Interface.Ping();
                 }
             }
             catch(Exception ex)

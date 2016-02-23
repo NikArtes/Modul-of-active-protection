@@ -40,7 +40,7 @@ namespace InterceptedModule
         {
             try
             {
-                RemoteHooking.IpcCreateServer<FileMonInterface>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                RemoteHooking.IpcCreateServer<FileMonForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))
                 {
