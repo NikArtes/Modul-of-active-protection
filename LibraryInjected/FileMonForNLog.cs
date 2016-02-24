@@ -17,8 +17,7 @@ namespace LibraryInjected
         {
             foreach (string fileNames in inFileNames)
             {
-                var filesAndDirInXml = XmlLoggerManager.GetXml("C:\\logs\\LoggerModule\\test.xml", string.Concat("levl", fileNames.Split('\\').Count()));
-                if (!filesAndDirInXml.Contains(fileNames))
+                if (!XmlLoggerManager.CheckPathInXml("C:\\logs\\LoggerModule\\test.xml", fileNames.Trim('\\')))
                 {
                     Logger.Info(fileNames);
                 }

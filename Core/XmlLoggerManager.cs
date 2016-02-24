@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Core.Extentions;
 
@@ -8,21 +9,24 @@ namespace Core
 {
     public static class XmlLoggerManager
     {
+        private static readonly Regex _regex = new Regex(@"\[[0-9]*:[0-9]*\]");
+
         public static void MakeXml(string[] paths, string pathToFile)
         {
             XDocument doc = new XDocument().LoadOrCreate(pathToFile);
             foreach (var path in paths)
             {
-                var vlogennost = string.Concat("levl", path.Split('\\').Length);
+                var replacedPath = _regex.Replace(path, string.Empty);
+                var vlogennost = string.Concat("levl", replacedPath.Split('\\').Length);
                 if (doc.Root.Element(vlogennost) == null)
                 {
-                    doc.Root.Add(new XElement(vlogennost, new XElement("Add", path)));
+                    doc.Root.Add(new XElement(vlogennost, new XElement("Add", replacedPath)));
                 }
                 else
                 {
-                    if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(path))
+                    if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(replacedPath))
                     {
-                        doc.Root.Element(vlogennost).Add(new XElement("Add", path));
+                        doc.Root.Element(vlogennost).Add(new XElement("Add", replacedPath));
                     }
                 }
             }
@@ -47,6 +51,15 @@ namespace Core
                 }
             }
             return result;
+        }
+
+        public static bool CheckPathInXml(string pathToFile, string path)
+        {
+            var replacedPath = _regex.Replace(path, string.Empty);
+
+            var enumerable = GetXml(pathToFile, string.Concat("levl", replacedPath.Split('\\').Length));
+
+            return enumerable.Contains(replacedPath);
         }
     }
 }
