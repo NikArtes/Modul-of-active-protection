@@ -16,7 +16,6 @@ namespace Modul
         private static IntPtr _hookID = IntPtr.Zero;
         private static PasMessege _mesBox;
         private static SystemState flag;
-        private static Task taskIntersept;
         //ToDO всю это "слушающую" логику надо куда-то перенести, переделать, ибо костыль
         public static void Main()
         {
@@ -48,9 +47,9 @@ namespace Modul
                     {
                         _mesBox = new PasMessege();
                         _mesBox.Show();
+                        return CallNextHookEx(_hookID, nCode, wParam, lParam);
                     }
-                    taskIntersept = new Task(() => InterseptDll.Main(null));
-                    taskIntersept.Start();
+                    InterseptDll.Main(null);
                     //TODO переписать херню
                     if (flag != SystemState.Exit)
                     {
