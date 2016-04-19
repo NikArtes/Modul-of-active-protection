@@ -14,15 +14,18 @@ using System.Security.Principal;
 
 namespace InterceptedModule
 {
-    public static class InterseptDll
-    {
-        private static string ChannelName;
+    using Core;
 
-        public static void Main(string[] args)
+    [Serializable]
+    public class InterseptDll
+    {
+        private string ChannelName;
+
+        public void Main()
         {
             int InTargetPID = 0;
             string InEXEPath = (string)null;
-            foreach (var process in Process.GetProcessesByName("ccleaner64"))
+            foreach (var process in Process.GetProcessesByName("Notepad++"))
             {
                 InTargetPID = process.Id;
                 break;
@@ -36,11 +39,18 @@ namespace InterceptedModule
             Intersept(InTargetPID, InEXEPath);
         }
 
-        private static void Intersept(int inTargetPID, string inEXEPath)
+        private void Intersept(int inTargetPID, string inEXEPath)
         {
             try
             {
-                RemoteHooking.IpcCreateServer<FileMonForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                if (Class1.State == SystemState.Scanning)
+                {
+                    RemoteHooking.IpcCreateServer<FileMonForXml>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                }
+                else
+                {
+                    RemoteHooking.IpcCreateServer<FileMonForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                }
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))
                 {

@@ -2,12 +2,14 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+using System.Threading;
 using InterceptedModule;
 using Core;
 
 namespace Modul
 {
+    using System.Reflection;
+
     class InterceptKeys
     {
         private const int WH_KEYBOARD_LL = 13;
@@ -16,6 +18,7 @@ namespace Modul
         private static IntPtr _hookID = IntPtr.Zero;
         private static PasMessege _mesBox;
         private static SystemState flag;
+        private static AppDomain childDomain;
         //ToDO всю это "слушающую" логику надо куда-то перенести, переделать, ибо костыль
         public static void Main()
         {
@@ -43,13 +46,24 @@ namespace Modul
                 int vkCode = Marshal.ReadInt32(lParam);
                 if ((Keys)vkCode == Keys.F12)
                 {
+                    Class1.State = SystemState.Scanning;
                     if (flag==SystemState.Exit)
                     {
+                        Class1.State = SystemState.Locking;
                         _mesBox = new PasMessege();
                         _mesBox.Show();
                         return CallNextHookEx(_hookID, nCode, wParam, lParam);
                     }
-                    InterseptDll.Main(null);
+                    if (childDomain != null)
+                    {
+                        AppDomain.Unload(childDomain);
+                    }
+                    childDomain = AppDomain.CreateDomain("hookDomain");
+
+                    var unwrap = (InterseptDll)childDomain.CreateInstanceFromAndUnwrap(AppDomain.CurrentDomain.BaseDirectory + "InterceptedModule.dll", "InterceptedModule.InterseptDll");
+                    unwrap.Main();
+
+                    //InterseptDll.Main();
                     //TODO переписать херню
                     if (flag != SystemState.Exit)
                     {

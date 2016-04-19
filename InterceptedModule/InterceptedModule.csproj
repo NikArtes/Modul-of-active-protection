@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{a292d723-4a26-4d76-860e-8012b01092a2}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibraryInjected\LibraryInjected.csproj">
       <Project>{f83e0774-1f4a-4aa4-ae86-2b12846a440e}</Project>
       <Name>LibraryInjected</Name>

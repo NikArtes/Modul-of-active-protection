@@ -10,6 +10,8 @@ using LoggerModule;
 
 namespace LibraryInjected
 {
+    using Core;
+
     public class Main : IEntryPoint
     {
         private Stack<Tuple<string, string>> Queue = new Stack<Tuple<string, string>>();
@@ -20,7 +22,14 @@ namespace LibraryInjected
 
         public Main(RemoteHooking.IContext InContext, string InChannelName)
         {
-            this.Interface = RemoteHooking.IpcConnectClient<FileMonForNLog>(InChannelName);
+            if (Class1.State == SystemState.Scanning)
+            {
+                this.Interface = RemoteHooking.IpcConnectClient<FileMonForXml>(InChannelName);
+            }
+            else
+            {
+                this.Interface = RemoteHooking.IpcConnectClient<FileMonForNLog>(InChannelName);
+            }
         }
 
         public void Run(RemoteHooking.IContext InContext, string InChannelName)
