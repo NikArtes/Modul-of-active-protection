@@ -19,7 +19,18 @@ namespace LibraryInjected
             {
                 if (!XmlLoggerManager.CheckPathInXml("C:\\logs\\LoggerModule\\test.xml", fileNames.Trim('\\')))
                 {
-                    Logger.Info(fileNames);
+                    Logger.Info(string.Concat("CreateFile function call in ",fileNames));
+                }
+            }
+        }
+
+        public void OnDeleteFile(int inClientPid, string[] inFileNames)
+        {
+            foreach (var fileName in inFileNames)
+            {
+                if (!XmlLoggerManager.CheckPathInXml("C:\\logs\\LoggerModule\\test.xml", fileName.Trim('\\')))
+                {
+                    Logger.Info(string.Concat("DeleteFile function call in ", fileName));
                 }
             }
         }
