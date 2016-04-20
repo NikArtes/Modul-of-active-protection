@@ -8,12 +8,7 @@ namespace LibraryInjected
 {
     public class FileMonForNLog : MarshalByRefObject, IFileMon
     {
-        public void IsInstalled(int inClientPid)
-        {
-            Logger.Info($"FileMon has been installed in target {(object) inClientPid}.\r\n");
-        }
-
-        public void OnCreateFile(int inClientPid, string[] inFileNames)
+        public void OnCreateFile(string[] inFileNames)
         {
             foreach (string fileNames in inFileNames)
             {
@@ -24,7 +19,7 @@ namespace LibraryInjected
             }
         }
 
-        public void OnDeleteFile(int inClientPid, string[] inFileNames)
+        public void OnDeleteFile(string[] inFileNames)
         {
             foreach (var fileName in inFileNames)
             {
@@ -33,16 +28,6 @@ namespace LibraryInjected
                     Logger.Info(string.Concat("DeleteFile function call in ", fileName));
                 }
             }
-        }
-
-        public void ReportException(Exception inInfo)
-        {
-            Logger.Error(string.Format("The target process has reported an error:\r\n" + inInfo.ToString()));
-        }
-
-        public void Ping()
-        {
-            //Logger.Info(string.Concat("Ping {0}", DateTime.Now));
         }
     }
 }

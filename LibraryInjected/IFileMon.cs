@@ -2,10 +2,10 @@
 
 namespace LibraryInjected
 {
-    public interface IFileMon : IMon
+    public interface IFileMon 
     {
-        void OnCreateFile(int inClientPid, string[] inFileNames);
+        void OnCreateFile(string[] inFileNames);
 
-        void OnDeleteFile(int inClientPid, string[] inFileNames);
+        void OnDeleteFile(string[] inFileNames);
     }
 }
