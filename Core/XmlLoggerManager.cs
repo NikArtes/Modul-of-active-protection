@@ -9,24 +9,21 @@ namespace Core
 {
     public static class XmlLoggerManager
     {
-        private static readonly Regex _regex = new Regex(@"\[[0-9]*:[0-9]*\]");
-
         public static void MakeXml(string[] paths, string pathToFile)
         {
             XDocument doc = new XDocument().LoadOrCreate(pathToFile);
             foreach (var path in paths)
             {
-                var replacedPath = _regex.Replace(path, string.Empty);
-                var vlogennost = string.Concat("levl", replacedPath.Split('\\').Length);
+                var vlogennost = string.Concat("levl", path.Split('\\').Length);
                 if (doc.Root.Element(vlogennost) == null)
                 {
-                    doc.Root.Add(new XElement(vlogennost, new XElement("Add", replacedPath)));
+                    doc.Root.Add(new XElement(vlogennost, new XElement("Add", path)));
                 }
                 else
                 {
-                    if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(replacedPath))
+                    if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(path))
                     {
-                        doc.Root.Element(vlogennost).Add(new XElement("Add", replacedPath));
+                        doc.Root.Element(vlogennost).Add(new XElement("Add", path));
                     }
                 }
             }
@@ -55,11 +52,9 @@ namespace Core
 
         public static bool CheckPathInXml(string pathToFile, string path)
         {
-            var replacedPath = _regex.Replace(path, string.Empty);
+            var enumerable = GetXml(pathToFile, string.Concat("levl", path.Split('\\').Length));
 
-            var enumerable = GetXml(pathToFile, string.Concat("levl", replacedPath.Split('\\').Length));
-
-            return enumerable.Contains(replacedPath);
+            return enumerable.Contains(path);
         }
     }
 }

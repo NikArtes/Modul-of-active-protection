@@ -96,7 +96,7 @@ namespace LibraryInjected
             {
                 Main main = (Main)HookRuntimeInfo.Callback;
                 lock (main.Queue)
-                  main.Queue.Push(new Tuple<string, string>("CreateFile", "[" + RemoteHooking.GetCurrentProcessId().ToString() + ":" + RemoteHooking.GetCurrentThreadId().ToString() + "]: \"" + InFileName + "\""));
+                  main.Queue.Push(new Tuple<string, string>("CreateFile", InFileName));
             }
             catch(Exception ex)
             {
@@ -111,7 +111,7 @@ namespace LibraryInjected
             {
                 Main main = (Main)HookRuntimeInfo.Callback;
                 lock (main.Queue)
-                  main.Queue.Push(new Tuple<string, string>("DeleteFile", "[" + RemoteHooking.GetCurrentProcessId().ToString() + ":" + RemoteHooking.GetCurrentThreadId().ToString() + "]: \"" + InFileName + "\""));
+                  main.Queue.Push(new Tuple<string, string>("DeleteFile", InFileName));
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace LibraryInjected
             {
                 Main main = (Main)HookRuntimeInfo.Callback;
                 lock (main.Queue)
-                  main.Queue.Push(new Tuple<string, string>("DeleteFile", "[" + RemoteHooking.GetCurrentProcessId().ToString() + ":" + RemoteHooking.GetCurrentThreadId().ToString() + "]: \"" + InFileName + "\""));
+                  main.Queue.Push(new Tuple<string, string>("DeleteFile", InFileName));
             }
             catch (Exception ex)
             {
