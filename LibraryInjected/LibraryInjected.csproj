@@ -46,9 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileMonForNLog.cs" />
-    <Compile Include="FileMonForXml.cs" />
-    <Compile Include="IFileMon.cs" />
+    <Compile Include="FileFunctionInjectForNLog.cs" />
+    <Compile Include="FileFunctionInjectForXml.cs" />
+    <Compile Include="IFileFunctionInject.cs" />
+    <Compile Include="IFuncionInject.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMon.cs" />

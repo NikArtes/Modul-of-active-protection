@@ -2,7 +2,7 @@
 
 namespace LibraryInjected
 {
-    public interface IFileMon 
+    public interface IFileFunctionInject : IFuncionInject
     {
         void OnCreateFile(string[] inFileNames);
 

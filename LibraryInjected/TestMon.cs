@@ -10,7 +10,7 @@
     public class TestMon
     {
         protected Stack<Tuple<string, string>> Queue = new Stack<Tuple<string, string>>();
-        private IFileMon Interface;
+        private IFileFunctionInject Interface;
         private LocalHook CreateFileHook;
         private LocalHook DeleteFileWHook;
         private LocalHook DeleteFileAHook;
@@ -19,11 +19,11 @@
         {
             if (Class1.State == SystemState.Scanning)
             {
-                Interface = RemoteHooking.IpcConnectClient<FileMonForXml>(InChannelName);
+                Interface = RemoteHooking.IpcConnectClient<FileFunctionInjectForXml>(InChannelName);
             }
             else
             {
-                Interface = RemoteHooking.IpcConnectClient<FileMonForNLog>(InChannelName);
+                Interface = RemoteHooking.IpcConnectClient<FileFunctionInjectForNLog>(InChannelName);
             }
 
             CreateFileHook = LocalHook.Create(LocalHook.GetProcAddress("kernel32.dll", "CreateFileW"), new DCreateFile(CreateFile_Hooked), this);

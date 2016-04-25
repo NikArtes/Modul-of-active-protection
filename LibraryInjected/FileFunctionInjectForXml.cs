@@ -5,7 +5,7 @@ using LoggerModule;
 
 namespace LibraryInjected
 {
-    public class FileMonForXml : MarshalByRefObject, IFileMon
+    public class FileFunctionInjectForXml : MarshalByRefObject, IFileFunctionInject
     {
         public void OnCreateFile(string[] inFileNames)
         {

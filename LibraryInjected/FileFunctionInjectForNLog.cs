@@ -6,7 +6,7 @@ using LoggerModule;
 
 namespace LibraryInjected
 {
-    public class FileMonForNLog : MarshalByRefObject, IFileMon
+    public class FileFunctionInjectForNLog : MarshalByRefObject, IFileFunctionInject
     {
         public void OnCreateFile(string[] inFileNames)
         {

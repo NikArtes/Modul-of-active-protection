@@ -45,11 +45,11 @@ namespace InterceptedModule
             {
                 if (Class1.State == SystemState.Scanning)
                 {
-                    RemoteHooking.IpcCreateServer<FileMonForXml>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                    RemoteHooking.IpcCreateServer<FileFunctionInjectForXml>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
                 }
                 else
                 {
-                    RemoteHooking.IpcCreateServer<FileMonForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
+                    RemoteHooking.IpcCreateServer<FileFunctionInjectForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
                 }
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))
