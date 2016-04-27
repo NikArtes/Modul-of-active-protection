@@ -4,7 +4,7 @@ namespace LoggerModule
 {
     public static class Logger
     {
-        private static NLog.Logger _defaultLogger = LogManager.GetLogger("default");
+        private static readonly NLog.Logger _defaultLogger = LogManager.GetLogger("default");
 
         public static void Info(string messageValue)
         {

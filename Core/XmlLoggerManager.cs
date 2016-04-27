@@ -9,22 +9,20 @@ namespace Core
 {
     public static class XmlLoggerManager
     {
-        public static void MakeXml(string[] paths, string pathToFile)
+        public static void MakeXml(string path, string pathToFile)
         {
             XDocument doc = new XDocument().LoadOrCreate(pathToFile);
-            foreach (var path in paths)
+
+            var vlogennost = string.Concat("levl", path.Split('\\').Length);
+            if (doc.Root.Element(vlogennost) == null)
             {
-                var vlogennost = string.Concat("levl", path.Split('\\').Length);
-                if (doc.Root.Element(vlogennost) == null)
+                doc.Root.Add(new XElement(vlogennost, new XElement("Add", path)));
+            }
+            else
+            {
+                if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(path))
                 {
-                    doc.Root.Add(new XElement(vlogennost, new XElement("Add", path)));
-                }
-                else
-                {
-                    if (doc.Root.Element(vlogennost).Elements().Any() && !doc.Root.Element(vlogennost).Elements().Select(x => x.Value).Contains(path))
-                    {
-                        doc.Root.Element(vlogennost).Add(new XElement("Add", path));
-                    }
+                    doc.Root.Element(vlogennost).Add(new XElement("Add", path));
                 }
             }
 

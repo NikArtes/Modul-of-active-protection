@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public enum SystemState
+    public enum SystemState 
     {
+        Stable,
         Scanning,
         Locking,
-        Stable,
         Exit
     }
 }

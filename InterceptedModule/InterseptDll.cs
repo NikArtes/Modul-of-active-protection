@@ -11,6 +11,7 @@ using EasyHook;
 using LibraryInjected;
 using LoggerModule;
 using System.Security.Principal;
+using LibraryInjected.FunctionBehaviors;
 
 namespace InterceptedModule
 {
@@ -43,14 +44,8 @@ namespace InterceptedModule
         {
             try
             {
-                if (Class1.State == SystemState.Scanning)
-                {
-                    RemoteHooking.IpcCreateServer<FileFunctionInjectForXml>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
-                }
-                else
-                {
-                    RemoteHooking.IpcCreateServer<FileFunctionInjectForNLog>(ref ChannelName, WellKnownObjectMode.SingleCall, WellKnownSidType.WorldSid);
-                }
+                RemoteHooking.IpcCreateServer<BehaviorsWrapper>(ref ChannelName, WellKnownObjectMode.SingleCall, new BehaviorsWrapper(Class1.State), WellKnownSidType.WorldSid);
+
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))
                 {
