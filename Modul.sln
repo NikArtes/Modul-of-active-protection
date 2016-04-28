@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modul", "Modul\Modul.csproj", "{20F3EFE1-5F9B-45A0-B8CA-5FFE5841C007}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerModule", "LoggerModule\LoggerModule.csproj", "{82D81D83-113D-4251-853D-ED9D135272F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{A292D723-4A26-4D76-860E-8012B01092A2}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterceptedModule", "Interc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryInjected", "LibraryInjected\LibraryInjected.csproj", "{F83E0774-1F4A-4AA4-AE86-2B12846A440E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormApplication", "WinFormApplication\WinFormApplication.csproj", "{CC6CE877-4F70-4AE3-9BD9-9D260E789A9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20F3EFE1-5F9B-45A0-B8CA-5FFE5841C007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20F3EFE1-5F9B-45A0-B8CA-5FFE5841C007}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20F3EFE1-5F9B-45A0-B8CA-5FFE5841C007}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20F3EFE1-5F9B-45A0-B8CA-5FFE5841C007}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82D81D83-113D-4251-853D-ED9D135272F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82D81D83-113D-4251-853D-ED9D135272F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D81D83-113D-4251-853D-ED9D135272F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{F83E0774-1F4A-4AA4-AE86-2B12846A440E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F83E0774-1F4A-4AA4-AE86-2B12846A440E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F83E0774-1F4A-4AA4-AE86-2B12846A440E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6CE877-4F70-4AE3-9BD9-9D260E789A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6CE877-4F70-4AE3-9BD9-9D260E789A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6CE877-4F70-4AE3-9BD9-9D260E789A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6CE877-4F70-4AE3-9BD9-9D260E789A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

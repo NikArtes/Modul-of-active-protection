@@ -46,10 +46,10 @@ namespace Modul
                 int vkCode = Marshal.ReadInt32(lParam);
                 if ((Keys)vkCode == Keys.F12)
                 {
-                    Class1.State = SystemState.Scanning;
+                    SystemManager.State = SystemState.Scanning;
                     if (flag==SystemState.Exit)
                     {
-                        Class1.State = SystemState.Locking;
+                        SystemManager.State = SystemState.Locking;
                         _mesBox = new PasMessege();
                         _mesBox.Show();
                         return CallNextHookEx(_hookID, nCode, wParam, lParam);

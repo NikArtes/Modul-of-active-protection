@@ -44,7 +44,7 @@ namespace InterceptedModule
         {
             try
             {
-                RemoteHooking.IpcCreateServer<BehaviorsWrapper>(ref ChannelName, WellKnownObjectMode.SingleCall, new BehaviorsWrapper(Class1.State), WellKnownSidType.WorldSid);
+                RemoteHooking.IpcCreateServer<BehaviorsWrapper>(ref ChannelName, WellKnownObjectMode.SingleCall, new BehaviorsWrapper(SystemManager.State), WellKnownSidType.WorldSid);
 
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))
