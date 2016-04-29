@@ -1,11 +1,9 @@
-﻿using System;
-using Core;
+﻿using Core;
 using LibraryInjected.FunctionsInjected;
 using LoggerModule;
 
 namespace LibraryInjected.FunctionBehaviors
 {
-    [Serializable]
     [AttachedType(typeof(CreateFileFunctionInjected), SystemState.Locking)]
     public class CreateFailFunctionBehaviorForNLog : FunctionBehavior
     {

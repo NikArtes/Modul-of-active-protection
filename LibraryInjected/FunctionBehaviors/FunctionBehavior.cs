@@ -2,8 +2,7 @@
 
 namespace LibraryInjected.FunctionBehaviors
 {
-    [Serializable]
-    public abstract class FunctionBehavior 
+    public abstract class FunctionBehavior : MarshalByRefObject
     {
         public abstract void Action(string path);
     }

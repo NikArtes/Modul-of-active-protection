@@ -22,7 +22,7 @@ namespace InterceptedModule
     {
         private string ChannelName;
 
-        public void Main()
+        public void Main(SystemState state)
         {
             int InTargetPID = 0;
             string InEXEPath = (string)null;
@@ -37,14 +37,14 @@ namespace InterceptedModule
                 Logger.Error("No process exists with that name!");
                 return;
             }
-            Intersept(InTargetPID, InEXEPath);
+            Intersept(InTargetPID, InEXEPath, state);
         }
 
-        private void Intersept(int inTargetPID, string inEXEPath)
+        private void Intersept(int inTargetPID, string inEXEPath, SystemState state)
         {
             try
             {
-                RemoteHooking.IpcCreateServer<BehaviorsWrapper>(ref ChannelName, WellKnownObjectMode.SingleCall, new BehaviorsWrapper(SystemManager.State), WellKnownSidType.WorldSid);
+                RemoteHooking.IpcCreateServer<BehaviorsWrapper>(ref ChannelName, WellKnownObjectMode.SingleCall, new BehaviorsWrapper(state), WellKnownSidType.WorldSid);
 
                 string str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
                 if (string.IsNullOrEmpty(inEXEPath))

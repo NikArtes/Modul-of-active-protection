@@ -25,16 +25,12 @@ namespace WinFormApplication
 
         private void LockSystemButton_Click(object sender, EventArgs e)
         {
-            SystemManager.State = SystemState.Locking;
-            
-            Program.CreateNewInjectProcess();
+            Program.CreateNewInjectProcess(SystemState.Locking);
         }
 
         private void ScanSystemButton_Click(object sender, EventArgs e)
         {
-            SystemManager.State = SystemState.Scanning;
-
-            Program.CreateNewInjectProcess();
+            Program.CreateNewInjectProcess(SystemState.Scanning);
         }
 
         private void Form_Resize(object sender, EventArgs e)

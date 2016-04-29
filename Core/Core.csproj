@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SystemManager.cs" />
     <Compile Include="Extentions\XDocumentExtentions.cs" />
     <Compile Include="SystemState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
