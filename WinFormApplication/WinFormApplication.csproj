@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Mattahan-Ultrabuuf-Comics-Captain-America-Shield.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,6 +83,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Mattahan-Ultrabuuf-Comics-Captain-America-Shield.ico" />
     <Content Include="Source\Icons\Mattahan-Ultrabuuf-Comics-Captain-America-Shield.ico" />
   </ItemGroup>
   <ItemGroup>
