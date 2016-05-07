@@ -8,7 +8,7 @@ namespace LibraryInjected.FunctionsInjected
 {
     public class CreateFileFunctionInjected : FunctionInjected
     {
-        private FunctionBehavior _behavior;
+        private static FunctionBehavior _behavior;
 
         public CreateFileFunctionInjected(FunctionBehavior behavior)
         {
@@ -16,7 +16,7 @@ namespace LibraryInjected.FunctionsInjected
 
             _hook = LocalHook.Create(LocalHook.GetProcAddress("kernel32.dll", "CreateFileW"), new DCreateFile(CreateFile_Hooked), this);
 
-            _hook.ThreadACL.SetExclusiveACL(new int[1]);
+            _hook.ThreadACL.SetExclusiveACL(new int[0]);
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
@@ -26,8 +26,7 @@ namespace LibraryInjected.FunctionsInjected
         {
             try
             {
-                var main = (CreateFileFunctionInjected)HookRuntimeInfo.Callback;
-                main._behavior.Action(InFileName);
+                _behavior.Action(InFileName);
             }
             catch (Exception ex)
             {

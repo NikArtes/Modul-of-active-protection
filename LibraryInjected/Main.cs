@@ -4,48 +4,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using System.Threading;
 using EasyHook;
 using LoggerModule;
 using Core;
-using System.Dynamic;
-using Core.Extentions;
-using LibraryInjected.Extensions;
+using LibraryInjected.Extentions;
 using LibraryInjected.FunctionBehaviors;
 using LibraryInjected.FunctionsInjected;
+using LibraryInjected.Wrappers;
 
 namespace LibraryInjected
 {
     public class Main : IEntryPoint
     {
-        private readonly List<FunctionInjected> _functions; 
+        private readonly List<FunctionInjected> _functions;
 
-        public Main(RemoteHooking.IContext InContext, string InChannelName)
+        private readonly Wrapper _behaviorWrapper;
+
+        public Main(RemoteHooking.IContext InContext, SystemState state, string InChannelName)
         {
             _functions = new List<FunctionInjected>();
-            BehaviorsWrapper behaviorsWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper>(InChannelName);
 
-            foreach (var functionBehavior in behaviorsWrapper.Functions)
+            switch (state)
             {
-                var functionInjected = functionBehavior.CreateAttachedType();
-                if (functionInjected != null)
-                {
-                    _functions.Add(functionBehavior.CreateAttachedType());
-                }
+                case SystemState.Scanning:
+                    _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForXml>>(InChannelName);
+                    break;
+                case SystemState.Locking:
+                    _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForNLog>>(InChannelName);
+                    break;
             }
-            Logger.Info(_functions.Count().ToString());
-            Logger.Info(behaviorsWrapper.State.ToString());
         }
 
-        public void Run(RemoteHooking.IContext InContext, string InChannelName)
+        public void Run(RemoteHooking.IContext InContext, SystemState state, string InChannelName)
         {
             try
-            {
+            {                
+                foreach (var functionBehavior in _behaviorWrapper.Functions)
+                {
+                    _functions.Add(functionBehavior.CreateAttachedTypeOfFunctionInjected());
+                }
+
                 RemoteHooking.WakeUpProcess();
 
                 while (true)
                 {
-
+                    
                 }
             }
             catch (Exception ex)

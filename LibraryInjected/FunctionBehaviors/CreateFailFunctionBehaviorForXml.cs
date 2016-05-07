@@ -3,8 +3,8 @@ using LibraryInjected.FunctionsInjected;
 
 namespace LibraryInjected.FunctionBehaviors
 {
-    [AttachedType(typeof(CreateFileFunctionInjected), SystemState.Scanning)]
-    public class CreateFailFunctionBehaviorForXml : FunctionBehavior
+    [AttachedType(typeof(CreateFileFunctionInjected))]
+    public class CreateFailFunctionBehaviorForXml : FunctionBehaviorForXml
     {
         public override void Action(string path)
         {

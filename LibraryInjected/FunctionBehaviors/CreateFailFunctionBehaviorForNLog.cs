@@ -4,8 +4,8 @@ using LoggerModule;
 
 namespace LibraryInjected.FunctionBehaviors
 {
-    [AttachedType(typeof(CreateFileFunctionInjected), SystemState.Locking)]
-    public class CreateFailFunctionBehaviorForNLog : FunctionBehavior
+    [AttachedType(typeof(CreateFileFunctionInjected))]
+    public class CreateFailFunctionBehaviorForNLog : FunctionBehaviorForNLog
     {
         public override void Action(string path)
         {

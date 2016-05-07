@@ -4,19 +4,18 @@ using System.Reflection;
 using Core;
 using LibraryInjected.FunctionBehaviors;
 using LibraryInjected.FunctionsInjected;
-using LoggerModule;
 
-namespace LibraryInjected.Extensions
+namespace LibraryInjected.Extentions
 {
     public static class FunctionBehaviorExtention
     {
-        public static FunctionInjected CreateAttachedType(this FunctionBehavior functionBehavior)
+        public static FunctionInjected CreateAttachedTypeOfFunctionInjected(this FunctionBehavior functionBehavior)
         {
             FunctionInjected result = null;
 
             var attributes = functionBehavior.GetType().GetCustomAttributes<AttachedTypeAttribute>(false).ToArray();
 
-            if (attributes.Any())
+            if (attributes.Any(x => x.TypeMustCreate.IsSubclassOf(typeof (FunctionInjected))))
             {
                 result = (FunctionInjected)Activator.CreateInstance(attributes.First().TypeMustCreate, functionBehavior);
             }

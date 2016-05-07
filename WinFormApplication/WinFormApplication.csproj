@@ -91,6 +91,10 @@
       <Project>{3e411d26-cef0-4884-9b14-f4731e37f928}</Project>
       <Name>InterceptedModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryInjected\LibraryInjected.csproj">
+      <Project>{f83e0774-1f4a-4aa4-ae86-2b12846a440e}</Project>
+      <Name>LibraryInjected</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoggerModule\LoggerModule.csproj">
       <Project>{82d81d83-113d-4251-853d-ed9d135272f3}</Project>
       <Name>LoggerModule</Name>
