@@ -9,7 +9,7 @@ namespace LibraryInjected.FunctionBehaviors
     {
         public override void Action(string path)
         {
-            if (!XmlLoggerManager.CheckPathInXml("C:\\logs\\LoggerModule\\test.xml", path.Trim('\\')))
+            if (!XmlLoggerManager.CheckPathInXml(AppConfigManager.GetPathToXmlFile(), path.Trim('\\')))
             {
                 Logger.Info(string.Concat("CreateFile function call in ", path));
             }

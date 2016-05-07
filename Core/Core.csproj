@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +49,7 @@
     <Compile Include="AttachedTypeAttribute.cs" />
     <Compile Include="Dtos\ProcessDto.cs" />
     <Compile Include="Extentions\XDocumentExtentions.cs" />
+    <Compile Include="Managers\AppConfigManager.cs" />
     <Compile Include="Managers\Logger.cs" />
     <Compile Include="Managers\XmlLoggerManager.cs" />
     <Compile Include="SystemState.cs" />

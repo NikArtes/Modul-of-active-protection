@@ -9,7 +9,7 @@ namespace LibraryInjected.FunctionBehaviors
     {
         public override void Action(string path)
         {
-            XmlLoggerManager.MakeXml( path.Trim('\\'), "C:\\logs\\LoggerModule\\test.xml");
+            XmlLoggerManager.MakeXml( path.Trim('\\'), AppConfigManager.GetPathToXmlFile());
         }
     }
 }
