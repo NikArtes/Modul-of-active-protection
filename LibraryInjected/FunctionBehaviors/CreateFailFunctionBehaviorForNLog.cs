@@ -1,6 +1,6 @@
 ﻿using Core;
+using Core.Managers;
 using LibraryInjected.FunctionsInjected;
-using LoggerModule;
 
 namespace LibraryInjected.FunctionBehaviors
 {

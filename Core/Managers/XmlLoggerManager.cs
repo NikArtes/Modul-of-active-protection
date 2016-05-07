@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Core.Extentions;
 
-namespace Core
+namespace Core.Managers
 {
     public static class XmlLoggerManager
     {

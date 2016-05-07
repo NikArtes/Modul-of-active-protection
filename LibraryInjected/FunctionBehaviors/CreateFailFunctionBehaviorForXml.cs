@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Managers;
 using LibraryInjected.FunctionsInjected;
 
 namespace LibraryInjected.FunctionBehaviors

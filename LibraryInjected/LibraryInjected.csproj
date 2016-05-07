@@ -64,10 +64,6 @@
       <Project>{A292D723-4A26-4D76-860E-8012B01092A2}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggerModule\LoggerModule.csproj">
-      <Project>{82d81d83-113d-4251-853d-ed9d135272f3}</Project>
-      <Name>LoggerModule</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="EasyHook32.dll">

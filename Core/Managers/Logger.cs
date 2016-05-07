@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace LoggerModule
+namespace Core.Managers
 {
     public static class Logger
     {

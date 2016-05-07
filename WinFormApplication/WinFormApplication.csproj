@@ -95,10 +95,6 @@
       <Project>{f83e0774-1f4a-4aa4-ae86-2b12846a440e}</Project>
       <Name>LibraryInjected</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggerModule\LoggerModule.csproj">
-      <Project>{82d81d83-113d-4251-853d-ed9d135272f3}</Project>
-      <Name>LoggerModule</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

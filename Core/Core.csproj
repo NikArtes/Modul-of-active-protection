@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
@@ -43,15 +47,19 @@
   <ItemGroup>
     <Compile Include="AttachedTypeAttribute.cs" />
     <Compile Include="Extentions\XDocumentExtentions.cs" />
+    <Compile Include="Managers\Logger.cs" />
+    <Compile Include="Managers\XmlLoggerManager.cs" />
     <Compile Include="SystemState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlLoggerManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoggerModule\LoggerModule.csproj">
-      <Project>{82d81d83-113d-4251-853d-ed9d135272f3}</Project>
-      <Name>LoggerModule</Name>
-    </ProjectReference>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

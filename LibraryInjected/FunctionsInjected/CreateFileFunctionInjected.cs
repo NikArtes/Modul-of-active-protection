@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Core;
+using Core.Managers;
 using EasyHook;
 using LibraryInjected.FunctionBehaviors;
-using LoggerModule;
 
 namespace LibraryInjected.FunctionsInjected
 {

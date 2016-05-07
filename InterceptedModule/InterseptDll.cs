@@ -4,11 +4,11 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Remoting;
 using EasyHook;
-using LoggerModule;
 using System.Security.Principal;
 using LibraryInjected.FunctionBehaviors;
 using LibraryInjected.Wrappers;
 using Core;
+using Core.Managers;
 
 namespace InterceptedModule
 {
