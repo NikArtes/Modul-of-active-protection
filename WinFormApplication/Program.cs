@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
+using Core.Dtos;
 using InterceptedModule;
 
 namespace WinFormApplication
@@ -23,7 +25,7 @@ namespace WinFormApplication
             Application.Run(new Form());
         }
 
-        internal static void CreateNewInjectProcess(SystemState state)
+        internal static void CreateNewInjectProcess(SystemState state, int processId)
         {
             if (ChildDomain != null)
             {
@@ -32,7 +34,7 @@ namespace WinFormApplication
             ChildDomain = AppDomain.CreateDomain("hookDomain");
 
             var unwrap = (InterseptDll)ChildDomain.CreateInstanceFromAndUnwrap(AppDomain.CurrentDomain.BaseDirectory + "InterceptedModule.dll", "InterceptedModule.InterseptDll");
-            unwrap.Main(state);
+            unwrap.Main(state, processId);
         }
     }
 }

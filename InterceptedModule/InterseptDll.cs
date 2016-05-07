@@ -17,25 +17,17 @@ namespace InterceptedModule
     {
         private string ChannelName;
 
-        public void Main(SystemState state)
+        public void Main(SystemState state, int inTargetPID)
         {
-            var InTargetPID = 0;
-            var InEXEPath = (string)null;
-            foreach (var process in Process.GetProcessesByName("Notepad++"))
-            {
-                InTargetPID = process.Id;
-                break;
-            }
-
-            if (InTargetPID == -1)
+            if (inTargetPID == -1)
             {
                 Logger.Error("No process exists with that name!");
                 return;
             }
-            Intersept(InTargetPID, InEXEPath, state);
+            Intersept(inTargetPID, state);
         }
 
-        private void Intersept(int inTargetPID, string inEXEPath, SystemState state)
+        private void Intersept(int inTargetPID, SystemState state)
         {
             try
             {
@@ -50,16 +42,10 @@ namespace InterceptedModule
                 }
 
                 var str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
-                if (string.IsNullOrEmpty(inEXEPath))
-                {
-                    RemoteHooking.Inject(inTargetPID, str, str, (object)state, (object)ChannelName);
-                    Logger.Info($"Injected to process {inTargetPID}");
-                }
-                else
-                {
-                    RemoteHooking.CreateAndInject(inEXEPath, "", 0, InjectionOptions.DoNotRequireStrongName, str, str, out inTargetPID, (object)state, (object)ChannelName);
-                    Logger.Info($"Created and injected process {(object) inTargetPID}");
-                }
+
+                RemoteHooking.Inject(inTargetPID, str, str, (object)state, (object)ChannelName);
+                Logger.Info($"Injected to process {inTargetPID}");
+
             }
             catch (Exception ex)
             {

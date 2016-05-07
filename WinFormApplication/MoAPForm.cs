@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
 
@@ -16,6 +11,7 @@ namespace WinFormApplication
         public Form()
         {
             InitializeComponent();
+            Process.GetProcesses().ToList().ForEach(x => this.dataGridView.Rows.Add(new string[] { x.Id.ToString(), x.ProcessName }));
         }
 
         private void notifyIcon_Click(object sender, EventArgs e)
@@ -25,24 +21,30 @@ namespace WinFormApplication
 
         private void LockSystemButton_Click(object sender, EventArgs e)
         {
-            Program.CreateNewInjectProcess(SystemState.Locking);
+            Program.CreateNewInjectProcess(SystemState.Locking, GetProcId());
         }
 
         private void ScanSystemButton_Click(object sender, EventArgs e)
         {
-            Program.CreateNewInjectProcess(SystemState.Scanning);
+            Program.CreateNewInjectProcess(SystemState.Scanning, GetProcId());
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            this.ShowInTaskbar = this.WindowState != FormWindowState.Minimized;
+        }
+
+        private int GetProcId()
+        {
+            if (this.dataGridView.SelectedRows.Count == 1 && this.dataGridView.SelectedCells.Count > 1)
             {
-                this.ShowInTaskbar = false;
+                this.label1.Text = string.Empty;
+                return Convert.ToInt32(this.dataGridView.SelectedCells[0].Value);
             }
-            else
-            {
-                this.ShowInTaskbar = true;
-            }
+
+            this.label1.Text = @"No process exists with that name!";
+
+            return -1;
         }
     }
 }
