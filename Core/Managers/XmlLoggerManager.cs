@@ -32,18 +32,16 @@ namespace Core.Managers
         {
             var result = new List<string>();
 
-            using (var streamFile = new FileStream(pathToFile, FileMode.Open))
+            var xDocument = new XDocument().LoadOrCreate(pathToFile);
+            if (xDocument.Root != null && xDocument.Root.Element(level) != null)
             {
-                var xDocument = XDocument.Load(streamFile);
-                if (xDocument.Root != null && xDocument.Root.Element(level) != null)
+                var xElements = xDocument.Root.Element(level).Elements("Add");
+                if (xElements.Any())
                 {
-                    var xElements = xDocument.Root.Element(level).Elements("Add");
-                    if (xElements.Any())
-                    {
-                        result = xElements.Select(x => x.Value.ToString()).ToList();
-                    }
+                    result = xElements.Select(x => x.Value.ToString()).ToList();
                 }
             }
+
             return result;
         }
 

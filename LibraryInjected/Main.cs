@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using EasyHook;
 using Core;
 using Core.Managers;
@@ -22,16 +18,28 @@ namespace LibraryInjected
 
         public Main(RemoteHooking.IContext InContext, SystemState state, string InChannelName)
         {
-            _functions = new List<FunctionInjected>();
-
-            switch (state)
+            try
             {
-                case SystemState.Scanning:
-                    _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForXml>>(InChannelName);
-                    break;
-                case SystemState.Locking:
-                    _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForNLog>>(InChannelName);
-                    break;
+                _functions = new List<FunctionInjected>();
+
+                switch (state)
+                {
+                    case SystemState.Scanning:
+                        _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForXml>>(InChannelName);
+                        break;
+                    case SystemState.Locking:
+                        _behaviorWrapper = RemoteHooking.IpcConnectClient<BehaviorsWrapper<FunctionBehaviorForNLog>>(InChannelName);
+                        break;
+                }
+
+                foreach (var functionBehavior in _behaviorWrapper.Functions)
+                {
+                    _functions.Add(functionBehavior.CreateAttachedTypeOfFunctionInjected());
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
             }
         }
 
@@ -39,11 +47,6 @@ namespace LibraryInjected
         {
             try
             {                
-                foreach (var functionBehavior in _behaviorWrapper.Functions)
-                {
-                    _functions.Add(functionBehavior.CreateAttachedTypeOfFunctionInjected());
-                }
-
                 RemoteHooking.WakeUpProcess();
 
                 while (true)
