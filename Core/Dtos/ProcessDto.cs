@@ -1,5 +1,8 @@
-﻿namespace Core.Dtos
+﻿using System;
+
+namespace Core.Dtos
 {
+    [Serializable]
     public class ProcessDto
     {
         public int ProcId { get; set; }

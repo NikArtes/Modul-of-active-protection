@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Core;
+using Core.Dtos;
 
 namespace WinFormApplication
 {
@@ -34,17 +35,17 @@ namespace WinFormApplication
             this.ShowInTaskbar = this.WindowState != FormWindowState.Minimized;
         }
 
-        private int GetProcId()
+        private ProcessDto GetProcId()
         {
             if (this.dataGridView.SelectedRows.Count == 1 && this.dataGridView.SelectedCells.Count > 1)
             {
                 this.label1.Text = string.Empty;
-                return Convert.ToInt32(this.dataGridView.SelectedCells[0].Value);
+                return new ProcessDto {ProcId = Convert.ToInt32(this.dataGridView.SelectedCells[0].Value), ProcName = this.dataGridView.SelectedCells[1].Value.ToString()};
             }
 
             this.label1.Text = @"No process exists with that name!";
 
-            return -1;
+            return new ProcessDto { ProcId = -1, ProcName = string.Empty };
         }
     }
 }

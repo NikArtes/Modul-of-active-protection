@@ -7,9 +7,12 @@ namespace LibraryInjected.FunctionBehaviors
     [AttachedType(typeof(CreateFileFunctionInjected))]
     public class CreateFailFunctionBehaviorForXml : FunctionBehaviorForXml
     {
-        public override void Action(string path)
+        public override void Action(string path, string procName)
         {
-            XmlLoggerManager.MakeXml( path.Trim('\\'), AppConfigManager.GetPathToXmlFile());
+            XmlLoggerManager.MakeXml( path.Trim('\\'), string.Concat(AppConfigManager.GetBasePathToLoggerModule(), 
+                procName, 
+                "\\", 
+                AppConfigManager.GetNameOfXmlFile()));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Security.Principal;
 using LibraryInjected.FunctionBehaviors;
 using LibraryInjected.Wrappers;
 using Core;
+using Core.Dtos;
 using Core.Managers;
 
 namespace InterceptedModule
@@ -17,17 +18,17 @@ namespace InterceptedModule
     {
         private string ChannelName;
 
-        public void Main(SystemState state, int inTargetPID)
+        public void Main(SystemState state, ProcessDto processDto)
         {
-            if (inTargetPID == -1)
+            if (processDto.ProcId == -1)
             {
-                Logger.Error("No process exists with that name!");
+                Logger.Error("No process exists with that name!", processDto.ProcName);
                 return;
             }
-            Intersept(inTargetPID, state);
+            Intersept(processDto, state);
         }
 
-        private void Intersept(int inTargetPID, SystemState state)
+        private void Intersept(ProcessDto processDto, SystemState state)
         {
             try
             {
@@ -43,13 +44,13 @@ namespace InterceptedModule
 
                 var str = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibraryInjected.dll");
 
-                RemoteHooking.Inject(inTargetPID, str, str, (object)state, (object)ChannelName);
-                Logger.Info($"Injected to process {inTargetPID}");
+                RemoteHooking.Inject(processDto.ProcId, str, str, (object)processDto, (object)state, (object)ChannelName);
+                Logger.Info($"Injected to process {processDto.ProcId}", processDto.ProcName);
 
             }
             catch (Exception ex)
             {
-                Logger.Error($"There was an error while connecting to target:\r\n{(object) ex.ToString()}");
+                Logger.Error($"There was an error while connecting to target:\r\n{(object) ex.ToString()}", processDto.ProcName);
             }
         }
 

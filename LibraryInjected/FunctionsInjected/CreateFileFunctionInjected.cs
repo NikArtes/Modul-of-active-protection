@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Core;
+using Core.Dtos;
 using Core.Managers;
 using EasyHook;
 using LibraryInjected.FunctionBehaviors;
@@ -11,9 +12,13 @@ namespace LibraryInjected.FunctionsInjected
     {
         private static FunctionBehavior _behavior;
 
-        public CreateFileFunctionInjected(FunctionBehavior behavior)
+        private static ProcessDto _processDto;
+
+        public CreateFileFunctionInjected(FunctionBehavior behavior, ProcessDto processDto)
         {
             _behavior = behavior;
+
+            _processDto = processDto;
 
             _hook = LocalHook.Create(LocalHook.GetProcAddress("kernel32.dll", "CreateFileW"), new DCreateFile(CreateFile_Hooked), this);
 
@@ -27,11 +32,11 @@ namespace LibraryInjected.FunctionsInjected
         {
             try
             {
-                _behavior.Action(InFileName);
+                _behavior.Action(InFileName, _processDto.ProcName);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex.Message);
+                Logger.Error(ex.Message, _processDto.ProcName);
             }
             return CreateFile(InFileName, InDesiredAccess, InShareMode, InSecurityAttributes, InCreationDisposition, InFlagsAndAttributes, InTemplateFile);
         }

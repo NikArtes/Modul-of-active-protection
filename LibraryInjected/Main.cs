@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EasyHook;
 using Core;
+using Core.Dtos;
 using Core.Managers;
 using LibraryInjected.Extentions;
 using LibraryInjected.FunctionBehaviors;
@@ -16,7 +17,7 @@ namespace LibraryInjected
 
         private readonly Wrapper _behaviorWrapper;
 
-        public Main(RemoteHooking.IContext InContext, SystemState state, string InChannelName)
+        public Main(RemoteHooking.IContext InContext, ProcessDto procDto, SystemState state, string InChannelName)
         {
             try
             {
@@ -34,16 +35,16 @@ namespace LibraryInjected
 
                 foreach (var functionBehavior in _behaviorWrapper.Functions)
                 {
-                    _functions.Add(functionBehavior.CreateAttachedTypeOfFunctionInjected());
+                    _functions.Add(functionBehavior.CreateAttachedTypeOfFunctionInjected(procDto));
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error(ex.Message);
+                Logger.Error(ex.Message, procDto.ProcName);
             }
         }
 
-        public void Run(RemoteHooking.IContext InContext, SystemState state, string InChannelName)
+        public void Run(RemoteHooking.IContext InContext, ProcessDto procDto, SystemState state, string InChannelName)
         {
             try
             {                
@@ -56,7 +57,7 @@ namespace LibraryInjected
             }
             catch (Exception ex)
             {
-                Logger.Error(ex.Message);
+                Logger.Error(ex.Message, procDto.ProcName);
             }
         }
     }

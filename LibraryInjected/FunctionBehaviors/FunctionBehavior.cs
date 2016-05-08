@@ -4,6 +4,6 @@ namespace LibraryInjected.FunctionBehaviors
 {
     public abstract class FunctionBehavior : MarshalByRefObject
     {
-        public abstract void Action(string path);
+        public abstract void Action(string path, string procName);
     }
 }

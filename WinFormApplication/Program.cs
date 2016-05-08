@@ -25,7 +25,7 @@ namespace WinFormApplication
             Application.Run(new Form());
         }
 
-        internal static void CreateNewInjectProcess(SystemState state, int processId)
+        internal static void CreateNewInjectProcess(SystemState state, ProcessDto processDto)
         {
             if (ChildDomain != null)
             {
@@ -34,7 +34,7 @@ namespace WinFormApplication
             ChildDomain = AppDomain.CreateDomain("hookDomain");
 
             var unwrap = (InterseptDll)ChildDomain.CreateInstanceFromAndUnwrap(AppDomain.CurrentDomain.BaseDirectory + "InterceptedModule.dll", "InterceptedModule.InterseptDll");
-            unwrap.Main(state, processId);
+            unwrap.Main(state, processDto);
         }
     }
 }
