@@ -9,10 +9,7 @@ namespace LibraryInjected.FunctionBehaviors
     {
         public override void Action(string path, string procName)
         {
-            XmlLoggerManager.MakeXml( path.Trim('\\'), string.Concat(AppConfigManager.GetBasePathToLoggerModule(), 
-                procName, 
-                "\\", 
-                AppConfigManager.GetNameOfXmlFile()));
+            XmlLoggerManager.MakeXml( path.Trim('\\'), AppConfigManager.GetPathToXmlForProcess(procName));
         }
     }
 }

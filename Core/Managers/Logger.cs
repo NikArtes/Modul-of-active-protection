@@ -14,19 +14,13 @@ namespace Core.Managers
 
         public static void Info(string messageValue, string procName)
         {
-            ConfigLogger(LogLevel.Info, string.Concat(AppConfigManager.GetBasePathToLoggerModule(), 
-                                                        procName, 
-                                                        "\\", 
-                                                        AppConfigManager.GetNameOfLogFile()));
+            ConfigLogger(LogLevel.Info, AppConfigManager.GetPathToLogForProcess(procName));
             _defaultLogger.Info(messageValue);
         }
 
         public static void Error(string messageValue, string procName)
         {
-            ConfigLogger(LogLevel.Error, string.Concat(AppConfigManager.GetBasePathToLoggerModule(), 
-                                                        procName, 
-                                                        "\\", 
-                                                        AppConfigManager.GetNameOfErrorFile()));
+            ConfigLogger(LogLevel.Error, AppConfigManager.GetPathToErrorForProcess(procName));
             _defaultLogger.Error(messageValue);
         }
 

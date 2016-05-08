@@ -23,5 +23,29 @@ namespace Core.Managers
         {
             return ConfigurationManager.AppSettings["nameOfErrorFile"];
         }
+
+        public static string GetPathToLogForProcess(string processName = "common")
+        {
+            return string.Concat(GetBasePathToLoggerModule(),
+                                    processName,
+                                    "\\",
+                                    GetNameOfLogFile());
+        }
+
+        public static string GetPathToErrorForProcess(string processName = "common")
+        {
+            return string.Concat(GetBasePathToLoggerModule(),
+                                 processName,
+                                 "\\",
+                                 GetNameOfErrorFile());
+        }
+
+        public static string GetPathToXmlForProcess(string processName = "common")
+        {
+            return string.Concat(GetBasePathToLoggerModule(),
+                                 processName,
+                                 "\\",
+                                 GetNameOfXmlFile());
+        }
     }
 }
