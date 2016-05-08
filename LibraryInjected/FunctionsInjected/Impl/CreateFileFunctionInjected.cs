@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Core;
 using Core.Dtos;
 using Core.Managers;
 using EasyHook;
 using LibraryInjected.FunctionBehaviors;
 
-namespace LibraryInjected.FunctionsInjected
+namespace LibraryInjected.FunctionsInjected.Impl
 {
     public class CreateFileFunctionInjected : FunctionInjected
     {

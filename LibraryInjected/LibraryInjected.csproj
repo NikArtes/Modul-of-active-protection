@@ -47,13 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions\FunctionBehaviorExtention.cs" />
-    <Compile Include="FunctionBehaviors\CreateFailFunctionBehaviorForNLog.cs" />
-    <Compile Include="FunctionBehaviors\CreateFailFunctionBehaviorForXml.cs" />
     <Compile Include="FunctionBehaviors\FunctionBehavior.cs" />
     <Compile Include="FunctionBehaviors\FunctionBehaviorForNLog.cs" />
     <Compile Include="FunctionBehaviors\FunctionBehaviorForXml.cs" />
-    <Compile Include="FunctionsInjected\CreateFileFunctionInjected.cs" />
+    <Compile Include="FunctionBehaviors\Impl\CreateFileFunctionBehaviorForNLog.cs" />
+    <Compile Include="FunctionBehaviors\Impl\CreateFileFunctionBehaviorForXml.cs" />
+    <Compile Include="FunctionBehaviors\Impl\DeleteFileFunctionBehaviorForNLog.cs" />
+    <Compile Include="FunctionBehaviors\Impl\DeleteFileFunctionBehaviorForXml.cs" />
     <Compile Include="FunctionsInjected\FunctionInjected.cs" />
+    <Compile Include="FunctionsInjected\Impl\CreateFileFunctionInjected.cs" />
+    <Compile Include="FunctionsInjected\Impl\DeleteFileFunctionInjected.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\BehaviorsWrapper.cs" />

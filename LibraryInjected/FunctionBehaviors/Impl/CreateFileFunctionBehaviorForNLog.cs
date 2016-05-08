@@ -1,11 +1,11 @@
 ﻿using Core;
 using Core.Managers;
-using LibraryInjected.FunctionsInjected;
+using LibraryInjected.FunctionsInjected.Impl;
 
-namespace LibraryInjected.FunctionBehaviors
+namespace LibraryInjected.FunctionBehaviors.Impl
 {
     [AttachedType(typeof(CreateFileFunctionInjected))]
-    public class CreateFailFunctionBehaviorForNLog : FunctionBehaviorForNLog
+    public class CreateFileFunctionBehaviorForNLog : FunctionBehaviorForNLog
     {
         public override void Action(string path, string procName)
         {
