@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Core;
 using Core.Dtos;
+using Core.Managers;
 
 namespace WinFormApplication
 {
@@ -22,12 +23,12 @@ namespace WinFormApplication
 
         private void LockSystemButton_Click(object sender, EventArgs e)
         {
-            Program.CreateNewInjectProcess(SystemState.Locking, GetProcId());
+            SystemManager.CreateNewInjectProcess(SystemState.Locking, GetProcId());
         }
 
         private void ScanSystemButton_Click(object sender, EventArgs e)
         {
-            Program.CreateNewInjectProcess(SystemState.Scanning, GetProcId());
+            SystemManager.CreateNewInjectProcess(SystemState.Scanning, GetProcId());
         }
 
         private void Form_Resize(object sender, EventArgs e)

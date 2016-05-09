@@ -18,7 +18,7 @@ namespace InterceptedModule
     {
         private string ChannelName;
 
-        public void Main(SystemState state, ProcessDto processDto)
+        public InterseptDll(SystemState state, ProcessDto processDto)
         {
             if (processDto.ProcId == -1)
             {

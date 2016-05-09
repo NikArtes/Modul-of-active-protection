@@ -51,6 +51,7 @@
     <Compile Include="Extentions\XDocumentExtentions.cs" />
     <Compile Include="Managers\AppConfigManager.cs" />
     <Compile Include="Managers\Logger.cs" />
+    <Compile Include="Managers\SystemManager.cs" />
     <Compile Include="Managers\XmlLoggerManager.cs" />
     <Compile Include="SystemState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
