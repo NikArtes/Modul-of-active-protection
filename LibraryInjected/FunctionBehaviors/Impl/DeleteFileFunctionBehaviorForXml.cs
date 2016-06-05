@@ -12,9 +12,9 @@ namespace LibraryInjected.FunctionBehaviors.Impl
             _functionName = "DeleteFile";
         }
 
-        public override void Action(string path, string procName)
+        public override void Action(string keyForWhiteList, string procName)
         {
-            XmlLoggerManager.MakeXml(path.Trim('\\'), AppConfigManager.GetPathToXmlForProcess(procName, _functionName));
+            XmlLoggerManager.MakeXml(keyForWhiteList.Trim('\\'), AppConfigManager.GetPathToXmlForProcess(procName, _functionName));
         }
     }
 }

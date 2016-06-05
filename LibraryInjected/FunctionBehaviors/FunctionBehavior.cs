@@ -6,6 +6,6 @@ namespace LibraryInjected.FunctionBehaviors
     {
         protected string _functionName;
 
-        public abstract void Action(string path, string procName);
+        public abstract void Action(string keyForWhiteList, string procName);
     }
 }
