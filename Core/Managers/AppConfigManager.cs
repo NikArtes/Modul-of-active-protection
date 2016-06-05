@@ -4,14 +4,11 @@ namespace Core.Managers
 {
     public static class AppConfigManager
     {
+        private const string _partOfWhiteListFile = "WhiteList_For_";
+
         public static string GetBasePathToLoggerModule()
         {
             return ConfigurationManager.AppSettings["basePathToLoggerModule"];
-        }
-
-        public static string GetNameOfXmlFile()
-        {
-            return ConfigurationManager.AppSettings["nameOfXMLFile"];
         }
 
         public static string GetNameOfLogFile()
@@ -40,12 +37,14 @@ namespace Core.Managers
                                  GetNameOfErrorFile());
         }
 
-        public static string GetPathToXmlForProcess(string processName = "common")
+        public static string GetPathToXmlForProcess(string processName = "common", string functionName = "")
         {
             return string.Concat(GetBasePathToLoggerModule(),
                                  processName,
                                  "\\",
-                                 GetNameOfXmlFile());
+                                 _partOfWhiteListFile,
+                                 functionName,
+                                 ".xml");
         }
     }
 }
